@@ -7,6 +7,7 @@ from .config import settings
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger("collector")
 
+
 def backfill():
     client = TwelveDataClient()
     repo = PriceRepository()
@@ -20,6 +21,7 @@ def backfill():
         with session_scope() as s:
             repo.bulk_insert(s, sym, values)
         logger.info("Backfilled %d rows for %s", len(values), sym)
+
 
 def collect_once():
     client = TwelveDataClient()
@@ -36,6 +38,7 @@ def collect_once():
             logger.info("Inserted new datapoint for %s (%s)", sym, latest_pt["datetime"])
         else:
             logger.info("No update for %s", sym)
+
 
 def run():
     backfill()

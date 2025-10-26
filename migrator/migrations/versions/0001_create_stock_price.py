@@ -4,6 +4,7 @@ import sqlalchemy as sa
 revision = "0001"
 down_revision = None
 
+
 def upgrade():
     op.create_table(
         "stock_price",
@@ -15,9 +16,12 @@ def upgrade():
         sa.Column("low", sa.Float, nullable=False),
         sa.Column("close", sa.Float, nullable=False),
         sa.Column("volume", sa.Float),
-        sa.Column("created_at", sa.DateTime(timezone=True), server_default=sa.text("CURRENT_TIMESTAMP")),
-        sa.UniqueConstraint("symbol", "datetime", name="uq_symbol_datetime")
+        sa.Column(
+            "created_at", sa.DateTime(timezone=True), server_default=sa.text("CURRENT_TIMESTAMP")
+        ),
+        sa.UniqueConstraint("symbol", "datetime", name="uq_symbol_datetime"),
     )
+
 
 def downgrade():
     op.drop_table("stock_price")

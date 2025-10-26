@@ -1,9 +1,11 @@
 from pydantic import BaseModel
 
+
 class LatestResponse(BaseModel):
     symbol: str
     datetime: str
     close: float
+
 
 class TrendResponse(BaseModel):
     symbol: str

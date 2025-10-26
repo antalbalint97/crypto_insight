@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from services.collector.app.db import SessionLocal, init_db
 from services.collector.app.collector import TwelveDataClient
 
+
 def main():
     logging.basicConfig(level=logging.INFO)
     symbols = ["AAPL", "TSLA", "BTC/USD"]
@@ -18,6 +19,7 @@ def main():
         if data:
             client.save_to_db(db, symbol, data)
             logging.info(f"Inserted {len(data)} records for {symbol}")
+
 
 if __name__ == "__main__":
     main()

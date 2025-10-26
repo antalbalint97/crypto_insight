@@ -1,8 +1,10 @@
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import DateTime, Float, String, Integer, func
 
+
 class Base(DeclarativeBase):
     pass
+
 
 class StockPrice(Base):
     __tablename__ = "stock_price"
