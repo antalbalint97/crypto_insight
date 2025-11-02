@@ -28,7 +28,7 @@ jobs:
         run: black --check services tests migrator
 
       - name: Run Flake8 (linter)
-        run: flake8 --config=pyproject.toml services tests migrator
+        run: flake8 --toml-config=pyproject.toml services tests migrator
 
       - name: Run Pytest (unit tests)
         env:
