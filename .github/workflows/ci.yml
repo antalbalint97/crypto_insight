@@ -23,12 +23,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r services/api/requirements.txt
           pip install -r requirements.dev.txt
+      
+      - name: Check versions
+        run: |
+          python -m flake8 --version
+          python -m black --version
+          python -m pytest --version
 
       - name: Run Black (code formatter)
         run: black --check services tests migrator
 
       - name: Run Flake8 (linter)
-        run: flake8 --toml-config=pyproject.toml services tests migrator
+        run: python -m flake8 services tests migrator
 
       - name: Run Pytest (unit tests)
         env:
